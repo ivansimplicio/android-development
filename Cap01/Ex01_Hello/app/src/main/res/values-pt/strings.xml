@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MeuAplicativo</string>
+    <string name="hello_world">Olá mundo!</string>
+    <string name="action_settings">Configurações</string>
+</resources>
