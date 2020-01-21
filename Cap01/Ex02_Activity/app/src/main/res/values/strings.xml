@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MeuAplicativo</string>
     <string name="btn_toast">Exibir Toast</string>
+    <string name="btn_tela2">Tela 2</string>
+    <string name="btn_tela2_parcelable">Tela 2 Parcelable</string>
+    <string name="btn_tela2_serializable">Tela 2 Serializable</string>
 </resources>
