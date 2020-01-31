@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">MeuAplicativo</string>
+    <string name="title_activity_tela_abas">Tela Abas</string>
+    <string name="title_activity_tela_pager">Tela Pager</string>
+    <string name="action_settings">Configurações</string>
+
+    <string-array name="opcoes">
+        <item>Abas</item>
+        <item>Spinner</item>
+        <item>View Pager</item>
+    </string-array>
+
+    <string-array name="secoes">
+        <item>Seção 1</item>
+        <item>Seção 2</item>
+        <item>Seção 3</item>
+    </string-array>
+
+    <array name="cores_bg">
+        <item>#FF0000</item>
+        <item>#FFFF00</item>
+        <item>#0000FF</item>
+    </array>
+
+    <array name="cores_texto">
+        <item>#F44336</item>
+        <item>#4CAF50</item>
+        <item>#03A9F4</item>
+    </array>
+</resources>
