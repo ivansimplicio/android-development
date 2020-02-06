@@ -9,8 +9,6 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,7 +21,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LivrosGridFragment extends Fragment
+public class LivrosGridFragment extends InternetFragment
         implements Response.Listener<JSONObject>,
         Response.ErrorListener {
 
@@ -79,6 +77,7 @@ public class LivrosGridFragment extends Fragment
         progressBar.setVisibility(exibir ? View.VISIBLE : View.GONE);
     }
 
+    @Override
     public void iniciarDownload(){
         isRunning = true;
         exibirProgress(true);

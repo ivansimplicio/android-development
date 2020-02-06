@@ -10,12 +10,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class LivrosListFragment extends Fragment {
+public class LivrosListFragment extends InternetFragment {
 
     LivrosTask task;
     List<Livro> listaDeLivros;
@@ -70,6 +68,7 @@ public class LivrosListFragment extends Fragment {
         progressBar.setVisibility(exibir ? View.VISIBLE : View.GONE);
     }
 
+    @Override
     public void iniciarDownload(){
         if(task == null || task.getStatus() != AsyncTask.Status.RUNNING){
             task = new LivrosTask();
