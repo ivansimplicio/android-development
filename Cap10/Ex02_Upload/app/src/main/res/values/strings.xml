@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MeuAplicativo</string>
+    <string name="hint_foto">Digite um texto para a foto</string>
+    <string name="texto_arquivo">Arquivo a ser enviado</string>
+    <string name="button_selecionar_foto">Selecionar Arquivo</string>
+    <string name="button_enviar_foto">Enviar Foto</string>
+    <string name="msg_sucesso">Upload realizado com sucesso</string>
+    <string name="msg_falha">Falha ao enviar o arquivo</string>
+</resources>
