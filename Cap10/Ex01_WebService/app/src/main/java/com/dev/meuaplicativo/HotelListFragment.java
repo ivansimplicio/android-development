@@ -1,15 +1,22 @@
 package com.dev.meuaplicativo;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +24,8 @@ import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +33,23 @@ import java.util.List;
 public class HotelListFragment extends ListFragment
         implements ActionMode.Callback,
         AdapterView.OnItemLongClickListener,
-        LoaderManager.LoaderCallbacks<Cursor> {
+        LoaderManager.LoaderCallbacks<Cursor>,
+        SwipeRefreshLayout.OnRefreshListener {
 
     //List<Hotel> hoteis;
     //ArrayAdapter<Hotel> adapter;
+
+    SwipeRefreshLayout swipeLayout;
+
+    BroadcastReceiver serviceReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            swipeLayout.setRefreshing(false);
+            if(!intent.getBooleanExtra(HotelIntentService.EXTRA_SUCESSO, false)){
+                Toast.makeText(getActivity(), R.string.erro_sincronizacao, Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 
     CursorAdapter adapter;
     String textoBusca;
@@ -41,6 +63,30 @@ public class HotelListFragment extends ListFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+        IntentFilter filter = new IntentFilter(HotelIntentService.ACAO_SINCRONIZAR);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(serviceReceiver, filter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(serviceReceiver);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.fragment_list_hotel, null);
+        swipeLayout = layout.findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(this);
+        swipeLayout.setColorSchemeResources(R.color.azul, R.color.verde, R.color.laranja, R.color.vermelho);
+        return layout;
+    }
+
+    @Override
+    public void onRefresh() {
+        Intent intent = new Intent(getActivity(), HotelIntentService.class);
+        getActivity().startService(intent);
     }
 
     @Override

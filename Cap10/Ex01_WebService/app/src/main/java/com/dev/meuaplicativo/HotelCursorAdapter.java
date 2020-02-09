@@ -26,6 +26,13 @@ public class HotelCursorAdapter extends CursorAdapter {
 
         textViewMensagem.setText(cursor.getString(cursor.getColumnIndex(HotelSQLHelper.COLUNA_NOME)));
         ratingBarEstrelas.setRating(cursor.getFloat(cursor.getColumnIndex(HotelSQLHelper.COLUNA_ESTRELAS)));
+
+        int status = cursor.getInt(cursor.getColumnIndex(HotelSQLHelper.COLUNA_STATUS));
+        if(status == Hotel.Status.EXCLUIR.ordinal()){
+            textViewMensagem.setTextColor(Color.RED);
+        }else{
+            textViewMensagem.setTextColor(Color.BLACK);
+        }
     }
 
     @Override

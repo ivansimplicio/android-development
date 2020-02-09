@@ -23,4 +23,6 @@
 
     <string name="acao_compartilhar">Compartilhar</string>
     <string name="texto_compartilhar">Me hospedei no %1$s e o classifiquei em %2$.1f estrelas.</string>
+
+    <string name="erro_sincronizacao">Erro ao sincronizar com o servidor.</string>
 </resources>

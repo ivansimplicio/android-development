@@ -5,6 +5,8 @@
 
     <dist:module dist:instant="true" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,17 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".HotelIntentService"
+            android:exported="false">
+        </service>
+
         <provider
             android:name=".HotelProvider"
             android:authorities="com.dev.meuaplicativo"
             android:enabled="true"
-            android:exported="true">
-        </provider>
+            android:exported="true"></provider>
 
         <activity
             android:name=".HotelDetalheActivity"
             android:label="@string/title_activity_hotel_detalhe"
-            android:parentActivityName=".HotelActivity"></activity>
+            android:parentActivityName=".HotelActivity" />
         <activity
             android:name=".HotelActivity"
             android:label="@string/app_name"

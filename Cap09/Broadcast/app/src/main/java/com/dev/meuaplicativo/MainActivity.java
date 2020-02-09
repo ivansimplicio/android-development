@@ -1,6 +1,7 @@
 package com.dev.meuaplicativo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         IntentFilter filterLocal = new IntentFilter(MINHA_ACAO);
-        registerReceiver(receiver, filterLocal);
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filterLocal);
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_USER_PRESENT);
         registerReceiver(receiver, filter);
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterReceiver(receiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
     public void enviarBroadcast(View view){
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void enviarLocalBroadcast(View view){
         Intent intent = new Intent(MINHA_ACAO);
-        sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
     class InternoReceiver extends BroadcastReceiver{

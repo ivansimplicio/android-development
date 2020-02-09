@@ -19,7 +19,7 @@ import java.util.List;
 
 public class HotelHttp {
 
-    private static String BASE_URL = "http://192.168.0.110/hotel_service/webservice.php";
+    private static String BASE_URL = "http://192.168.0.100/hotel_service/webservice.php";
     private Context context;
     private HotelRepositorio repositorio;
 
