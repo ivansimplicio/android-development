@@ -1,10 +1,13 @@
 package com.dev.meuaplicativo;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -18,6 +21,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class Mp3Activity extends Activity implements ServiceConnection, AdapterView.OnItemClickListener {
+
+    public static final String CHANNEL_ID = "meu_canal_001";
 
     private Mp3Service mp3Service;
     private ProgressBar progressBar;
@@ -41,6 +46,7 @@ public class Mp3Activity extends Activity implements ServiceConnection, AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mp3);
+        criarCanalDeNotificacao();
 
         progressBar = findViewById(R.id.progressBar);
         textViewMusica = findViewById(R.id.textViewMusica);
@@ -131,5 +137,17 @@ public class Mp3Activity extends Activity implements ServiceConnection, AdapterV
         progressBar.setMax(mp3Service.getTempoTotal());
         progressBar.setProgress(mp3Service.getTempoDecorrido());
         textViewDuracao.setText(DateUtils.formatElapsedTime(mp3Service.getTempoDecorrido() / 1000));
+    }
+
+    private void criarCanalDeNotificacao() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Canal Padrão";
+            String description = "Descrição: Canal padrão para notificações";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

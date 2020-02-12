@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MeuAplicativo</string>
+    <string name="title_activity_detalhe">Detalhes da Notificação</string>
+</resources>
