@@ -69,10 +69,10 @@ public class TelaSpinnerActivity extends AppCompatActivity implements AdapterVie
         SegundoNivelFragment fragment = SegundoNivelFragment.novaInstancia(titulosAbas[position],
                 backgroundColors.getColor(position, 0), textColors.getColor(position, 0));
 
-
         FragmentManager fm = getSupportFragmentManager();
         Fragment f = fm.findFragmentByTag("tag");
         FragmentTransaction ft = fm.beginTransaction();
+        ft.setCustomAnimations(R.anim.anim_entrada, R.anim.anim_saida);
         ft.replace(R.id.container, fragment, "tag");
         if(f != null){
             ft.addToBackStack(null);

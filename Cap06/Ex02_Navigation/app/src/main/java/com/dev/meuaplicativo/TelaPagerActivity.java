@@ -21,6 +21,7 @@ public class TelaPagerActivity extends AppCompatActivity {
         adapter = new AbasPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
+        viewPager.setPageTransformer(true, new ZoomPageTransformer());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
