@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MeuAplicativo</string>
+    <string name="activity_title">Chat Bluetooth</string>
+
+    <string name="acao_iniciar_servidor">Iniciar Servidor</string>
+    <string name="acao_iniciar_cliente">Iniciar Cliente</string>
+    <string name="msg_erro_bt_indisponivel">Aparelho não suporta Bluetooth</string>
+    <string name="msg_procurando_dispositivos">Procurando dispositivos...</string>
+    <string name="msg_ativar_bluetooth">Você deve ativar o Bluetooth para continuar.</string>
+    <string name="msg_aparelho_invisivel">Para iniciar o servidor, seu aparelho deve estar visível.</string>
+    <string name="aparelhos_encontrados">Aparelhos Encontrados</string>
+    <string name="aguarde">Aguarde</string>
+    <string name="mensagem_servidor">Aguardando por conexões...</string>
+    <string name="msg_desconectou">Desconectou</string>
+</resources>
